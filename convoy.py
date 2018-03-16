@@ -12,7 +12,7 @@ def main():
 	
 	# To save Video	
 	fourcc = cv2.VideoWriter_fourcc(*'XVID')
-	out1 = cv2.VideoWriter('output1.avi', fourcc, 20.0, (640, 480))
+	#out1 = cv2.VideoWriter('output1.avi', fourcc, 20.0, (640, 480))
 	out2 = cv2.VideoWriter('output2.avi', fourcc, 20.0, (640, 480))
 
 	while True:
@@ -59,7 +59,7 @@ def main():
 					
 					cv2.line(mask, center, (600/2, y+h/2), (0,255, 0), 2)
 		
-			out1.write(frame)
+			#out1.write(frame)
 			out2.write(mask)
 
 			cv2.imshow('frame',frame)
@@ -74,7 +74,7 @@ def main():
 			break
 	# When everything done, release the capture
 	cap.release()
-	out1.release()
+	#out1.release()
 	out2.release()
 	cv2.destroyAllWindows()
 
