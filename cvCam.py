@@ -9,52 +9,28 @@ from picamera import PiCamera
 	Input: PiCamera
 	Return: Frame
 '''
-class CvCam(object):
+class CvCamCamera(object):
 
-	def __init__(self, camera):
-		resolution = cfg.CAMERA_RESOLUTION
-		resolution = (resolution[1], resolution[0])
-		self.camera = camera
-		self.camera.resolution = resolution
-		self.camera.framerate = cfg.CAMERA_FRAMERATE
-		self.rawCapture = PiRGBArray(self.camera, size=resolution)
-        self.stream = self.camera.capture_continuous(self.rawCapture,
-            format="bgr", use_video_port=True)
-
-		self.frame = None
-		self.on = True
-
-        print('PiCamera loaded.. .warming camera')
-        time.sleep(2)
-
-
+    def __init__(self, camera, rawCapture):
+        self.camera = camera
+        self.rawCapture = rawCapture
+        self.frame = None
+        self.running = True
+        camera.start_recording('foo.h264')
+    
     def run(self):
-        f = next(self.stream)
-        frame = f.array
-        self.rawCapture.truncate(0)
-        return frame
-
-    def update(self):
-        # keep looping infinitely until the thread is stopped
-        for f in self.stream:
-            # grab the frame from the stream and clear the stream in
-            # preparation for the next frame
-            self.frame = f.array
-            self.rawCapture.truncate(0)
-
-            # if the thread indicator variable is set, stop the thread
-            if not self.on:
-                break
+        if self.running == True:
+            self.rawCapture = PiRGBArray(self.camera, size=cfg.CAMERA_RESOLUTION)
+            self.camera.capture(self.rawCapture, format="bgr", use_video_port=True)
+            self.frame=self.rawCapture.array
+            return self.frame
 
     def shutdown(self):
-        # indicate that the thread should be stopped
-        self.on = False
-        print('stoping PiCamera')
-        time.sleep(.5)
-        self.stream.close()
-        self.rawCapture.close()
+        self.camera.stop_recording()
+        self.running=False
+        time.sleep(1.5)
         self.camera.close()
-
+        time.sleep(1.5)
 
 '''
 	This CvImageFilter class is to filter the image out
