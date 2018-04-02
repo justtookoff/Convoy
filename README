@@ -1,0 +1,35 @@
+This is Convoy Project in MAE198:Autonomous Vehicle class @UCSD
+
+Writer: Dan Donghwee Kwon
+Email: dhkwon7740@gmail.com or dokwon@ucsd.edu
+
+What you need:
+    1. Rasberry Pi
+    2. Pi Camera
+    3. PWM
+    4. EMO
+    5. ESC
+    6. Two cars (one has to have Pi, PiCamera, PWM, EMO, and ESC)
+    7. donkeycar framework
+       you can download from (https://github.com/tawnkramer/donkey)
+    8. Files: cfg.py, myVehicle.py, convoyController.py, cvCam.py
+
+How to Run:
+    python myVehicle.py
+
+How it works:
+    1. Find a guiding car through the PiCamera.
+    2. If a guiding car found, calculate the distance, calculate the
+      angle
+    3. Get the right PWM_Steering value and PWM_Throttle value
+    4. Pulse the right PWM_Steering valuse and PWM_Throttle to the
+      PWM
+    5. Move the car
+
+How to find the guiding car:
+    1. If the object that has width:150 and height:75, get the object
+    2. get the x, y, w, h, and center
+
+How to calculate:
+    1. Using the Pythagorean thm, get the degree
+    2. Return PWM_Steering and PWM_Throttle values
