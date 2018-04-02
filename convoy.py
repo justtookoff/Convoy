@@ -72,7 +72,7 @@ def main():
 					(10, frame.shape[0]-10), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
 
 
-				if w > 50 and h> 50:
+				if w > 150 and h> 75:
 					cv2.rectangle(frame, (x, y), (x+w, y+h), (0,255, 0), 2)
 
 					#Showing Rectangle contour line and Middle line

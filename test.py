@@ -1,8 +1,13 @@
 import math
 
-x = 320
-y = 480
+w = 320
+h = 80
 
-z = math.pow(x, 2) + math.pow(y, 2)
+distanceX = abs(w)
 
-print(math.sqrt(z))
+x = math.tan(distanceX / h)
+rad = math.atan(x)
+
+degree = math.degrees(rad)
+
+print(degree)

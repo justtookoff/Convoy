@@ -1,6 +1,6 @@
 To-Do list
-1. Camera
-2. Steering
-3. Throttle
 
-4. TensorFlow
+Working on controller
+1. Need to measure the object that I have
+2. Need to Calibrate the Angle and the speed
+3. Need to Work on the PWM_Steering And PWM_Throttle
