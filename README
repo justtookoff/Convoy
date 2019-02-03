@@ -33,3 +33,6 @@ How to find the guiding car:
 How to calculate:
     1. Using the Pythagorean thm, get the degree
     2. Return PWM_Steering and PWM_Throttle values
+    
+Video:
+    https://www.youtube.com/watch?v=cNkWpTvZpDg
